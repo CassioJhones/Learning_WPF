@@ -18,19 +18,25 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-
-            <TextBlock Grid.Column="0" Text="Youtube Viewer" FontSize="30" Padding="25 02 0 10"/>
-            <Button Grid.Column="1" Content="Add" BorderBrush="Gray" Padding="20 0 20 0" Margin="0 0 15 6"/>
         </Grid>
+        <TextBlock Grid.Column="0" Text="Youtube Viewer" FontSize="30"/>
+        <Button
+            Grid.Column="1"
+            Command="{Binding AddYouTubeViewersCommand}"
+            Content="Add"
+            BorderBrush="Gray"
+            FontSize="16" />
 
-        <Grid Grid.Row="1" >
+        <Grid Grid.Row="1" Margin="0 20 0 0 ">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
 
-            <components:YouTubeViewersListing Grid.Column="0" Margin="5 0 0 10"/>
-            <components:YouTubeViewersDetails Grid.Column="1" Margin="10 0 5 10" />
+            <components:YouTubeViewersListing Grid.Column="0" DataContext="{Binding YouTubeViewersListingViewModel}"/>
+            <components:YouTubeViewersDetails Grid.Column="1"
+                                              Margin="10 0 5 10"
+                                              DataContext="{Binding YouTubeViewersDetailsViewModel}"/>
         </Grid>
     </Grid>
 </UserControl>

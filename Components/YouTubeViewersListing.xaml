@@ -3,15 +3,65 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:YoutubeProjeto.Components"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             xmlns:local="clr-namespace:YoutubeProjeto.Components" xmlns:custom="clr-namespace:DropdownMenuControl;assembly=DropdownMenuControl"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             mc:Ignorable="d" >
     <Grid>
         <Border BorderBrush="{StaticResource BordaPrimaria}"
                 BorderThickness="2"
                 CornerRadius="3"
                 SnapsToDevicePixels="True">
-            <ListView BorderThickness="0"/>
+            <Grid>
+                <Grid.OpacityMask>
+                    <VisualBrush Visual="{Binding ElementName=border}" />
+                </Grid.OpacityMask>
+                <Border
+                    x:Name="border"
+                    Background="White"
+                    CornerRadius="3" />
+
+                <ListView BorderThickness="0" ItemsSource="{Binding YouTubeViewersListingItemViewModels}">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Padding="5 10" TextBlock.FontSize="16">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="{Binding Username}" />
+
+                                    <custom:DropdownMenu  Grid.Column="1" Margin="10 0 0 0">
+                                        <Border Background="White"
+                                                BorderBrush="Gray"
+                                                BorderThickness="1" >
+
+                                            <StackPanel>
+                                                <StackPanel.Resources>
+                                                    <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                                        <Setter Property="Background" Value="Gray"/>
+                                                    </Style>
+                                                        
+
+
+                                                </StackPanel.Resources>
+                                                <Button Content="Editar" />
+                                                <Button Content="Deletar" />
+                                            </StackPanel>
+                                        </Border>
+                                    </custom:DropdownMenu>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
         </Border>
     </Grid>
 </UserControl>
