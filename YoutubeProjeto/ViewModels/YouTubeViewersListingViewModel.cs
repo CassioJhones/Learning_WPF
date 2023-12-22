@@ -1,21 +1,42 @@
 ﻿using System.Collections.ObjectModel;
-using System.Collections.Generic;
+using YoutubeProjeto.Models;
+using YoutubeProjeto.Stores;
 
 namespace YoutubeProjeto.ViewModels;
 
 public class YouTubeViewersListingViewModel : ViewModelBase
 {
     private readonly ObservableCollection<YouTubeViewersListingItemViewModel> _youTubeViewersListingItemViewModels;
-    public IEnumerable<YouTubeViewersListingItemViewModel> YouTubeViewersListingItemViewModels => _youTubeViewersListingItemViewModels;
-    public YouTubeViewersListingViewModel(Stores.SelectedYouTubeViewerStore _selectedYouTubeViewerStore)
+    private readonly SelectedYouTubeViewerStore _selectedYouTubeViewerStore;
+
+    public IEnumerable<YouTubeViewersListingItemViewModel> YouTubeViewerListingItemViewModels => _youTubeViewersListingItemViewModels;
+    private YouTubeViewersListingItemViewModel _selectedYouTubeViewersListingItemViewModel;
+    public YouTubeViewersListingItemViewModel SelectedYouTubeViewerListingItemViewModel
     {
+        get
+        {
+            return _selectedYouTubeViewersListingItemViewModel;
+        }
+        set
+        {
+            _selectedYouTubeViewersListingItemViewModel = value;
+            OnPropertyChanged(nameof(SelectedYouTubeViewerListingItemViewModel));
+
+            _selectedYouTubeViewerStore.SelectedYoutubeViewer = _selectedYouTubeViewersListingItemViewModel?.YouTubeViewer;
+        }
+    }
+
+
+
+    public YouTubeViewersListingViewModel(SelectedYouTubeViewerStore selectedYouTubeViewerStore)
+    {
+        _selectedYouTubeViewerStore = selectedYouTubeViewerStore;
         _youTubeViewersListingItemViewModels = new ObservableCollection<YouTubeViewersListingItemViewModel>();
 
-        _youTubeViewersListingItemViewModels.Add(new YouTubeViewersListingItemViewModel("Alexandre"));
-        _youTubeViewersListingItemViewModels.Add(new YouTubeViewersListingItemViewModel("Joacks"));
-        _youTubeViewersListingItemViewModels.Add(new YouTubeViewersListingItemViewModel("Fagner"));
-        _youTubeViewersListingItemViewModels.Add(new YouTubeViewersListingItemViewModel("David"));
-        _youTubeViewersListingItemViewModels.Add(new YouTubeViewersListingItemViewModel("Pimenta"));
-
+        _youTubeViewersListingItemViewModels.Add(new YouTubeViewersListingItemViewModel(new YouTubeViewer("Alexandre",true, true)));
+        _youTubeViewersListingItemViewModels.Add(new YouTubeViewersListingItemViewModel(new YouTubeViewer("Joacks", false, true)));
+        _youTubeViewersListingItemViewModels.Add(new YouTubeViewersListingItemViewModel(new YouTubeViewer("Lucas",true, false)));
+        _youTubeViewersListingItemViewModels.Add(new YouTubeViewersListingItemViewModel(new YouTubeViewer("David", false, false)));
+        _youTubeViewersListingItemViewModels.Add(new YouTubeViewersListingItemViewModel(new YouTubeViewer("Bruno",true, false)));
     }
 }
