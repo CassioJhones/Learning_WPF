@@ -1,15 +1,19 @@
-﻿namespace YoutubeProjeto.ViewModels;
+﻿using YoutubeProjeto.Models;
+using YoutubeProjeto.Stores;
+
+namespace YoutubeProjeto.ViewModels;
 
 public class YouTubeViewersDetailsViewModel : ViewModelBase
 {
-    public string Username { get; }
-    public string IsSubscribedDisplay { get; }
-    public string IsMemberDisplay { get; }
+    private readonly SelectedYouTubeViewerStore _selectedYouTubeViewerStore;
+    private YouTubeViewer SelectedYouTubeViewer => _selectedYouTubeViewerStore.SelectedYoutubeViewer;
+    public bool HasSelectedYouTubeViewer => SelectedYouTubeViewer != null;  
+    public string Username => SelectedYouTubeViewer?.Username ?? "Desconhecido";
+    public string IsSubscribedDisplay => (SelectedYouTubeViewer?.IsSubscribed ?? false) ? "Sim" : "Não";
+    public string IsMemberDisplay => (SelectedYouTubeViewer?.IsMember ?? false) ? "Sim" : "Não";
 
-    public YouTubeViewersDetailsViewModel()
+    public YouTubeViewersDetailsViewModel(SelectedYouTubeViewerStore selectedYouTubeViewerStore)
     {
-        Username = "Cassio";
-        IsSubscribedDisplay = "Sim";
-        IsMemberDisplay = "Sim";
+        _selectedYouTubeViewerStore = selectedYouTubeViewerStore;
     }
 }

@@ -7,7 +7,7 @@ public class YouTubeViewersListingViewModel : ViewModelBase
 {
     private readonly ObservableCollection<YouTubeViewersListingItemViewModel> _youTubeViewersListingItemViewModels;
     public IEnumerable<YouTubeViewersListingItemViewModel> YouTubeViewersListingItemViewModels => _youTubeViewersListingItemViewModels;
-    public YouTubeViewersListingViewModel()
+    public YouTubeViewersListingViewModel(Stores.SelectedYouTubeViewerStore _selectedYouTubeViewerStore)
     {
         _youTubeViewersListingItemViewModels = new ObservableCollection<YouTubeViewersListingItemViewModel>();
 
