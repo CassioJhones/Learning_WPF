@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
+using YoutubeProjeto.Commands;
 using YoutubeProjeto.Stores;
-
 namespace YoutubeProjeto.ViewModels;
 
 public class YouTubeViewersViewModel : ViewModelBase
@@ -9,9 +9,11 @@ public class YouTubeViewersViewModel : ViewModelBase
     public YouTubeViewersDetailsViewModel YouTubeViewersDetailsViewModel { get; }
     public ICommand AddYouTubeViewersCommand { get; }
 
-    public YouTubeViewersViewModel(SelectedYouTubeViewerStore _selectedYouTubeViewerStore)
+    public YouTubeViewersViewModel(SelectedYouTubeViewerStore selectedYouTubeViewerStore, ModalNavigationStore modalNavigationStore)
     {
-        YouTubeViewersListingViewModel = new YouTubeViewersListingViewModel(_selectedYouTubeViewerStore);
-        YouTubeViewersDetailsViewModel = new YouTubeViewersDetailsViewModel(_selectedYouTubeViewerStore);
+        YouTubeViewersListingViewModel = new YouTubeViewersListingViewModel(selectedYouTubeViewerStore, modalNavigationStore);
+        YouTubeViewersDetailsViewModel = new YouTubeViewersDetailsViewModel(selectedYouTubeViewerStore);
+
+        AddYouTubeViewersCommand = new OpenAddYouTubeViewerCommand(modalNavigationStore);
 }
 }

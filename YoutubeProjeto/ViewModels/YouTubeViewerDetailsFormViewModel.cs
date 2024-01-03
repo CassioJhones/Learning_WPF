@@ -31,6 +31,9 @@ public class YouTubeViewerDetailsFormViewModel : ViewModelBase
     }
 
     private bool _isMember;
+
+   
+
     public bool IsMember
     {
         get { return _isMember; }
@@ -42,7 +45,14 @@ public class YouTubeViewerDetailsFormViewModel : ViewModelBase
     }
 
 
-    public bool CanSubmit => !string.IsNullOrEmpty(Username);
+        public bool CanSubmit => !string.IsNullOrEmpty(Username);
         public ICommand SubmitCommand { get;  }
         public ICommand CancelCommand { get;  }
+
+
+    public YouTubeViewerDetailsFormViewModel(ICommand submitCommand, ICommand cancelCommand)
+    {
+        SubmitCommand = submitCommand;
+        CancelCommand = cancelCommand;
+    }
 }

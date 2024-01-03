@@ -22,4 +22,10 @@ public class ModalNavigationStore
     public bool IsOpen => CurrentViewModel != null;
 
     public event Action CurrentViewModelChanged;
+
+    public void Close()
+	{
+		CurrentViewModel = null;
+
+	} 
 }
