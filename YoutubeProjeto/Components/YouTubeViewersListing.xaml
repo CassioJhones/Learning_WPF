@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:YoutubeProjeto.Components" xmlns:custom="clr-namespace:DropdownMenuControl;assembly=DropdownMenuControl"
+             xmlns:local="clr-namespace:YoutubeProjeto.Components"
+             xmlns:custom="clr-namespace:DropdownMenuControl;assembly=DropdownMenuControl" xmlns:viewmodels="clr-namespace:YoutubeProjeto.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:YouTubeViewersListingViewModel}"
              d:DesignHeight="450"
              d:DesignWidth="800"
              mc:Ignorable="d" >
@@ -21,13 +22,14 @@
                 <Border
                     x:Name="border"
                     Background="White"
-                    CornerRadius="3" />
+                    CornerRadius="3"
+                 />
 
                 <ListView
-                    BorderThickness="0"
-                    SelectedItem="{Binding SelectedYouTubeViewersListingItemViewModels}"
-                    ItemsSource="{Binding YouTubeViewersListingItemViewModels}">
-                    
+                    BorderThickness="2"
+                    ItemsSource="{Binding YouTubeViewersListingItemViewModels}"
+                    SelectedItem="{Binding SelectedYouTubeViewersListingItemViewModel}">
+
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>

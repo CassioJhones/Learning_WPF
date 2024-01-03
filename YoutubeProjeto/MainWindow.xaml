@@ -11,8 +11,11 @@
         Title="Youtube Viewers"
         Height="450"
         Width="800">
-    
-    <Grid Margin="25">
-        <view:YouTubeViewersView/>
-    </Grid>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+
+        <Grid Margin="25">
+            <view:YouTubeViewersView DataContext="{Binding YouTubeViewersViewModel}"/>
+        </Grid>
+        
+    </ScrollViewer>
 </Window>

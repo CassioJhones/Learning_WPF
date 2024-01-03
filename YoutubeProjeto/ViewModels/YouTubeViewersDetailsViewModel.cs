@@ -21,11 +21,9 @@ public class YouTubeViewersDetailsViewModel : ViewModelBase
 
     protected override void Dispose() 
     {
-        _selectedYouTubeViewerStore.SelectedYouTubeViewerChanged += SelectedYouTubeViewerStore_SelectedYouTubeViewerChanged;
-
+        _selectedYouTubeViewerStore.SelectedYouTubeViewerChanged -= SelectedYouTubeViewerStore_SelectedYouTubeViewerChanged;
         base.Dispose();
     }
-
 
     private void SelectedYouTubeViewerStore_SelectedYouTubeViewerChanged()
     {
