@@ -10,6 +10,8 @@ namespace YoutubeProjeto.ViewModels;
 public class YouTubeViewersListingViewModel : ViewModelBase
 {
     private readonly ObservableCollection<YouTubeViewersListingItemViewModel> _youTubeViewersListingItemViewModels;
+    private readonly YouTubeViewersStore youTubeViewersStore;
+    private readonly YouTubeViewersStore _youTubeViewersStore;
     private readonly SelectedYouTubeViewerStore _selectedYouTubeViewerStore;
 
     public IEnumerable<YouTubeViewersListingItemViewModel> YouTubeViewerListingItemViewModels => _youTubeViewersListingItemViewModels;
@@ -26,8 +28,9 @@ public class YouTubeViewersListingViewModel : ViewModelBase
         }
     }
 
-    public YouTubeViewersListingViewModel(SelectedYouTubeViewerStore selectedYouTubeViewerStore, ModalNavigationStore modalNavigationStore)
+    public YouTubeViewersListingViewModel(YouTubeViewersStore youTubeViewersStore, SelectedYouTubeViewerStore selectedYouTubeViewerStore, ModalNavigationStore modalNavigationStore)
     {
+        _youTubeViewersStore = youTubeViewersStore;
         _selectedYouTubeViewerStore = selectedYouTubeViewerStore;
         _youTubeViewersListingItemViewModels = new ObservableCollection<YouTubeViewersListingItemViewModel>();
 

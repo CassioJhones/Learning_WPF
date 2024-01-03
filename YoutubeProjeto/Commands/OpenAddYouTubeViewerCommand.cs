@@ -12,7 +12,7 @@ public class OpenAddYouTubeViewerCommand : CommandBase
 {
     private readonly ModalNavigationStore _modalNavigationStore;
 
-    public OpenAddYouTubeViewerCommand(ModalNavigationStore modalNavigationStore)
+    public OpenAddYouTubeViewerCommand(YouTubeViewersStore youTubeViewersStore, ModalNavigationStore modalNavigationStore)
     {
         _modalNavigationStore = modalNavigationStore;
     }

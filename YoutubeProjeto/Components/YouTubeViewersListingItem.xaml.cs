@@ -15,13 +15,17 @@ using System.Windows.Shapes;
 
 namespace YoutubeProjeto.Components;
 /// <summary>
-/// Interação lógica para YouTubeViewersListing.xam
+/// Interação lógica para YouTubeViewersListingItem.xam
 /// </summary>
-public partial class YouTubeViewersListing : UserControl
+public partial class YouTubeViewersListingItem : UserControl
 {
-    public YouTubeViewersListing()
+    public YouTubeViewersListingItem()
     {
         InitializeComponent();
+    }
 
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
+        dropdown.IsOpen = false;
     }
 }
