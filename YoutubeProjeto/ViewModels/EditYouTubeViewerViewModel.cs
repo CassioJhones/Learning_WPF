@@ -3,14 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using YoutubeProjeto.Models;
+using YoutubeProjeto.Stores;
 
 namespace YoutubeProjeto.ViewModels;
-internal class EditYouTubeViewerViewModel : ViewModelBase
+public class EditYouTubeViewerViewModel : ViewModelBase
 {
+    public Guid YouTubeViewerId { get; }
+
     public YouTubeViewerDetailsFormViewModel YouTubeViewerDetailsFormViewModel { get; }
 
-    public EditYouTubeViewerViewModel()
+    public EditYouTubeViewerViewModel(YouTubeViewer youTubeViewer, YouTubeViewersStore youTubeViewersStore, ModalNavigationStore modalNavigationStore)
     {
-        YouTubeViewerDetailsFormViewModel = new YouTubeViewerDetailsFormViewModel();
+        YouTubeViewerId = youTubeViewer.Id;
+
+        ICommand submitCommand = new EditYouTubeViewerCommand(this, youTubeViewersStore, modalNavigationStore);
+        ICommand cancelCommand = new CloseModalCommand(modalNavigationStore);
+        YouTubeViewerDetailsFormViewModel = new YouTubeViewerDetailsFormViewModel(submitCommand, cancelCommand)
+        {
+            Username = youTubeViewer.Username,
+            IsSubscribed = youTubeViewer.IsSubscribed,
+            IsMember = youTubeViewer.IsMember,
+        };
     }
 }

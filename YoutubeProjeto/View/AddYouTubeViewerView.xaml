@@ -11,18 +11,18 @@
     d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <TextBlock
             Grid.Row="0"
             Style="{StaticResource PageHeader}"
-            Text="Add Youtube Viewer"/>
+            Text="Add YouTube Viewer" />
 
-        <components:YouTubeViewerDetailsForm Grid.Row="1" Margin="0 30 0 0"/>
-
-
-
+        <components:YouTubeViewerDetailsForm
+            Grid.Row="1"
+            Margin="0 30 0 0"
+            DataContext="{Binding YouTubeViewerDetailsFormViewModel}" />
     </Grid>
 </UserControl>

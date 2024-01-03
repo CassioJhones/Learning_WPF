@@ -18,5 +18,8 @@ public class ModalNavigationStore
 
         }
 	}
-	public event Action CurrentViewModelChanged;
+
+    public bool IsOpen => CurrentViewModel != null;
+
+    public event Action CurrentViewModelChanged;
 }
